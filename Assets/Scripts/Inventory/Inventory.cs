@@ -48,6 +48,34 @@ public class Inventory : Singleton<Inventory>
     /// <summary>True si hay al menos 'amount' del ítem.</summary>
     public bool HasItem(ItemData data, int amount = 1) => GetTotalCount(data) >= amount;
 
+    /// <summary>Cantidad de ese ítem que cabría añadir sin modificar el inventario (para comprobar espacio).</summary>
+    public int CountSpaceFor(ItemData data, int amount = 1)
+    {
+        if (data == null || amount <= 0 || _slots == null) return 0;
+        int remaining = amount;
+
+        if (data.IsStackable)
+        {
+            foreach (var stack in _slots.Values)
+            {
+                if (remaining <= 0) break;
+                if (stack.Data != data) continue;
+                remaining -= Math.Min(remaining, stack.SpaceLeft);
+            }
+        }
+
+        int emptySlots = 0;
+        for (int i = 0; i < slotCount; i++)
+            if (!_slots.ContainsKey(i)) emptySlots++;
+
+        if (data.IsStackable)
+            remaining -= Math.Min(remaining, emptySlots * data.MaxStackSize);
+        else
+            remaining -= Math.Min(remaining, emptySlots);
+
+        return amount - Math.Max(0, remaining);
+    }
+
     /// <summary>Añade ítem al inventario. Devuelve la cantidad que se pudo añadir.</summary>
     public int AddItem(ItemData data, int amount = 1)
     {
