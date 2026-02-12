@@ -15,7 +15,7 @@ namespace Dialogue
         [Tooltip("Imagen/retrato del personaje que habla")]
         public Sprite CharacterPortrait;
 
-        [Tooltip("Nombre del personaje (opcional, se muestra encima del texto)")]
+        [Tooltip("Nombre del personaje")]
         public string CharacterName;
 
         [Tooltip("Velocidad de escritura en caracteres por segundo (0 = mostrar todo de golpe)")]

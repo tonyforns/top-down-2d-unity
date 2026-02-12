@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Colocar en el jugador (o hijo). Detecta IInteractable dentro de un trigger 2D
+/// Colocar en el jugador. Detecta IInteractable dentro de un trigger 2D
 /// y al pulsar la tecla de interacción llama Interact() en el objetivo elegido
 /// (mayor prioridad, luego más cercano).
 /// Requiere un Collider2D en este GameObject con isTrigger = true.
@@ -17,7 +17,7 @@ public class InteractionDetector : MonoBehaviour
     [Tooltip("Tag del jugador para ignorar su propio collider en la detección")]
     [SerializeField] private string playerTag = "Player";
 
-    /// <summary>Objeto interactuable actualmente seleccionado (el que vería la UI).</summary>
+    /// <summary>Objeto interactuable actualmente seleccionado.</summary>
     public IInteractable CurrentTarget { get; private set; }
 
     /// <summary>Se invoca cuando cambia el objetivo en rango (entra/sale el primero o cambia el elegido).</summary>
