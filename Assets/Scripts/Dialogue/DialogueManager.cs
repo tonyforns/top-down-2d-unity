@@ -19,6 +19,7 @@ namespace Dialogue
         public event Action OnDialogueComplete;
 
         private DialogueData _currentDialogue;
+        public DialogueData CurrentDialogue => _currentDialogue;
         private int _currentLineIndex;
         private bool _isRunning;
 

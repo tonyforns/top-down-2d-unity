@@ -95,6 +95,7 @@ public class Inventory : Singleton<Inventory>
                 _slots[i] = stack;
                 remaining -= add;
             }
+            Debug.Log("Inventory changed");
         }
 
         for (int i = 0; i < slotCount && remaining > 0; i++)
@@ -109,6 +110,7 @@ public class Inventory : Singleton<Inventory>
         if (added > 0)
             OnInventoryChanged?.Invoke();
         return added;
+        
     }
 
     /// <summary>Quita 'amount' del ítem. Devuelve la cantidad que se pudo quitar.</summary>
